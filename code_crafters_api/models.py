@@ -46,7 +46,7 @@ class EducationalInstitution(models.Model):
     name = models.CharField(max_length=100)
     web_site = models.URLField(max_length=200, validators=[URLValidator()])
     id_type_institute = models.ForeignKey(TypeInstitute, on_delete=models.CASCADE)
-    location = models.CharField(max_length=150)
+    location = models.CharField(max_length=150, default="Colombia")
     id_support = models.ForeignKey(Support, on_delete=models.CASCADE)
 
     def __str__(self):
