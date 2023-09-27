@@ -1,12 +1,16 @@
 # Imports needed to work with Django REST framework and Recommendation model.
 
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.response import Response
-from rest_framework import status, generics
+from rest_framework import status
 from django.db import models
 
-from .serializer import RecommendationSerializer
-from .models import Recommendation
+from .serializer import RecommendationSerializer, EducationalInstitutionSerializer
+from .models import Recommendation, EducationalInstitution
+
+from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
+
 
 
 
@@ -29,3 +33,12 @@ class RecommendationView(viewsets.GenericViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
 
 
+
+
+class EducationalInstitutionSearchAPIView(ListAPIView):
+    queryset = EducationalInstitution.objects.all()
+    serializer_class = EducationalInstitutionSerializer
+
+    filter_backend = [filters.SearchFilter]
+
+    search_fields = ['name', 'location']

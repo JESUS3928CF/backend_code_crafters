@@ -9,4 +9,9 @@ class RecommendationSerializer(serializers.ModelSerializer):
 
 
 # serializes the EducationalInstitution model
+class EducationalInstitutionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EducationalInstitution
+        fields = '__all__'
+
 
