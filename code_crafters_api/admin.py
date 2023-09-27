@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Recommendation
 
-# Register your models here.
+# Model registration for the administrator
+admin.site.register(Recommendation)
