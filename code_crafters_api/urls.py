@@ -8,6 +8,6 @@ router = routers.DefaultRouter()
 router.register(r'recommendation', RecommendationView)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]
 
