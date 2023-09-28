@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db import models
 
-from .serializer import RecommendationSerializer, EducationalInstitutionSerializer, SupportSerializer, TypeInstituteSerializer
-from .models import Recommendation, EducationalInstitution, Support, TypeInstitute
+from .serializer import RecommendationSerializer, EducationalInstitutionSerializer, SupportSerializer, TypeInstituteSerializer, TypeSupportSerializer
+from .models import Recommendation, EducationalInstitution, Support, TypeInstitute, TypeSupport
 
 from rest_framework.response import Response
 from rest_framework import generics
@@ -79,4 +79,12 @@ class TypeInstituteViewSet(viewsets.ModelViewSet):
 
     def get(self, request):
         return Response(self.queryset.values())
+    
+class TypeSupportViewSet(viewsets.ModelViewSet):
+    queryset = TypeSupport.objects.all()
+    serializer_class = TypeSupportSerializer
+
+    def get(self, request):
+        return Response(self.queryset.values())
+
 
