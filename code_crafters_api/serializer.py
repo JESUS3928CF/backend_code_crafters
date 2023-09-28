@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Recommendation, EducationalInstitution, Support
+from .models import Recommendation, EducationalInstitution, Support, TypeInstitute
 
 # serializes the Recommendation model
 class RecommendationSerializer(serializers.ModelSerializer):
@@ -20,6 +20,11 @@ class SupportSerializer(serializers.ModelSerializer):
         model = Support
         fields = '__all__'
 
+
+class TypeInstituteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TypeInstitute
+        fields = '__all__'
 
 
 
