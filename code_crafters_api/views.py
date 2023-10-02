@@ -17,9 +17,6 @@ from rest_framework.generics import ListAPIView
 
 
 
-
-
-
 # RecommendationView view definition.
 # This view handles the operations related to recommendations.
 
@@ -36,8 +33,6 @@ class RecommendationView(viewsets.GenericViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED) 
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
-
-
 
 class EducationalInstitutionSearchView(generics.ListAPIView):
     serializer_class = EducationalInstitutionSerializer

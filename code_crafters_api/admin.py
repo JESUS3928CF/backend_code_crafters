@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Recommendation, TypeSupport, Support,TypeInstitute,EducationalInstitution, SupportForEducationalInstitution
+from .models import *
 
-# Model registration for the administrator
-# Models registration for the administrator
+# Model registration for the administrator 
 @admin.register(Recommendation)
 class RecommendationAdmin(admin.ModelAdmin):
     list_display = ('description', 'date') #Shows list of fields in the view
@@ -34,5 +33,3 @@ class EducationalInstitutionAdmin(admin.ModelAdmin):
     list_display_links = ('name',) #field for options (edit, delete, etc)
     
 admin.site.register(SupportForEducationalInstitution)
-
-
