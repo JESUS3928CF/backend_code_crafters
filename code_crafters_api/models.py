@@ -21,15 +21,7 @@ class TypeSupport(models.Model):
 
 # Defines the model 'Support'
 
-class Support(models.Model):
-    name = models.CharField(max_length=75)
-    description = models.TextField()
-    id_type_support = models.ForeignKey(TypeSupport, on_delete=models.CASCADE)
-    url = models.URLField(max_length=200, validators=[URLValidator()])
-    requirements = models.TextField()
 
-    def __str__(self):
-        return self.name
 
 
 # Defines the model 'TypeInstitute'
@@ -47,13 +39,24 @@ class EducationalInstitution(models.Model):
     web_site = models.URLField(max_length=200, validators=[URLValidator()])
     id_type_institute = models.ForeignKey(TypeInstitute, on_delete=models.CASCADE)
     location = models.CharField(max_length=150, default="Colombia")
-    id_support = models.ForeignKey(Support, on_delete=models.CASCADE)
+    # id_support = models.ForeignKey(Support, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
+    
+class Support(models.Model):
+    name = models.CharField(max_length=75)
+    description = models.TextField()
+    id_type_support = models.ForeignKey(TypeSupport, on_delete=models.CASCADE, default=1)
+    url = models.URLField(max_length=200, validators=[URLValidator()])
+    requirements = models.TextField(default="")
+    id_educational_institution = models.ForeignKey(EducationalInstitution, on_delete=models.CASCADE, default=1)
 
+    def __str__(self):
+        return self.name
+class SupportForEducationalInstitution(models.Model):
+    id_support = models.ForeignKey(Support, on_delete=models.CASCADE)
+    id_educationalInstitution = models.ForeignKey(EducationalInstitution, on_delete=models.CASCADE)
 
-
-
-
+    
     

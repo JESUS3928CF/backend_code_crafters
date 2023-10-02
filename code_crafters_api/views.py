@@ -5,11 +5,16 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db import models
 
-from .serializer import RecommendationSerializer, EducationalInstitutionSerializer
-from .models import Recommendation, EducationalInstitution
+from .serializer import RecommendationSerializer, EducationalInstitutionSerializer, SupportSerializer, TypeInstituteSerializer, TypeSupportSerializer
+from .models import Recommendation, EducationalInstitution, Support, TypeInstitute, TypeSupport
 
 from rest_framework.response import Response
 from rest_framework import generics
+
+from rest_framework.generics import ListAPIView
+
+
+
 
 
 # RecommendationView view definition.
@@ -39,3 +44,42 @@ class EducationalInstitutionSearchView(generics.ListAPIView):
         else:
             queryset = EducationalInstitution.objects.all()
         return queryset
+
+
+
+
+class SupportForEducationalInstitutionAPIView(ListAPIView):
+    queryset = Support.objects.all()
+    serializer_class = SupportSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        id_educational_institution = self.request.query_params.get('id_educational_institution')
+        id_type_support = self.request.query_params.get('id_type_support')
+
+        if id_educational_institution:
+            queryset = queryset.filter(id_educational_institution=id_educational_institution)
+
+        if id_type_support:
+            queryset = queryset.filter(id_type_support=id_type_support)
+
+        return queryset
+
+
+
+class TypeInstituteViewSet(viewsets.ModelViewSet):
+    queryset = TypeInstitute.objects.all()
+    serializer_class = TypeInstituteSerializer
+
+    def get(self, request):
+        return Response(self.queryset.values())
+    
+class TypeSupportViewSet(viewsets.ModelViewSet):
+    queryset = TypeSupport.objects.all()
+    serializer_class = TypeSupportSerializer
+
+    def get(self, request):
+        return Response(self.queryset.values())
+
+
