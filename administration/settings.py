@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,14 @@ INSTALLED_APPS = [
 
 # Translation documentation
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Apoyos",
+    "site_header": "Apoyos",
+    "site_brand": "Apoyos",
+    "welcome_sign": "Iniciar Sesión",
+    "navigation_expanded": False,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
