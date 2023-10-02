@@ -31,5 +31,10 @@ class EducationalInstitutionAdmin(admin.ModelAdmin):
     list_display = ('name', 'web_site', 'id_type_institute', 'location') #Shows list of fields in the view
     search_fields = ( 'id', 'name', 'web_site','location') # Search in related fields
     list_display_links = ('name',) #field for options (edit, delete, etc)
-    
-admin.site.register(SupportForEducationalInstitution)
+
+@admin.register(SupportForEducationalInstitution)
+class SupportForEducationalInstitutionAdmin(admin.ModelAdmin):
+    list_display = ('id_support', 'id_educationalInstitution')
+
+
+
